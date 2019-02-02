@@ -21,6 +21,10 @@ class MainActivity : AppCompatActivity() {
     internal var compositeDisposable = CompositeDisposable()
     internal lateinit var iComicAPI: IComicAPI
 
+    override fun onStop() {
+        compositeDisposable.clear()
+        super.onStop()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         compositeDisposable.add(iComicAPI.comicList
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({comicList ->
+            .subscribe({ comicList ->
                     text_comic.text = StringBuilder("NEW COMIC (")
                         .append(comicList.size)
                         .append(")")
@@ -85,7 +89,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 swipe_refresh.isRefreshing = false
             },
-                {thr ->
+                { thr ->
                     Toast.makeText(baseContext, "" + thr.message, Toast.LENGTH_SHORT).show()
                     if(!swipe_refresh.isRefreshing) {
                         dialog.dismiss()

@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import com.example.jeffrey.comicreader.Model.Chapter
 import com.example.jeffrey.comicreader.Model.Comic
 import com.example.jeffrey.comicreader.Retrofit.IComicAPI
 import com.example.jeffrey.comicreader.Retrofit.RetrofitClient
@@ -11,6 +12,7 @@ import com.example.jeffrey.comicreader.Retrofit.RetrofitClient
 object Common {
 
     var selected_comic: Comic? = null
+    var chapter_list : List<Chapter> = ArrayList()
 
     fun isConnectedToInternet(context: Context?): Boolean {
         val cm = context!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

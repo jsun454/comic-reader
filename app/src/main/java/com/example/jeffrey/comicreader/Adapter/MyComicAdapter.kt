@@ -1,12 +1,14 @@
 package com.example.jeffrey.comicreader.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.jeffrey.comicreader.ChapterActivity
 import com.example.jeffrey.comicreader.Common.Common
 import com.example.jeffrey.comicreader.Interface.IRecyclerOnClick
 import com.example.jeffrey.comicreader.Model.Comic
@@ -30,6 +32,7 @@ class MyComicAdapter(internal var context: Context, internal var mangaList: List
         holder.setClickListener(object: IRecyclerOnClick {
             override fun onClick(view: View, position: Int) {
                 Common.selected_comic = mangaList[position]
+                context.startActivity(Intent(context, ChapterActivity::class.java))
             }
         })
     }
