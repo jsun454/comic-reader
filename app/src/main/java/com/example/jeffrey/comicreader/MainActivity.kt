@@ -1,5 +1,12 @@
+// Code is based off an online tutorial
+//
+// TO START BACKEND:
+// cd ComicReader/app/src/main/assets
+// node index.js
+
 package com.example.jeffrey.comicreader
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
@@ -33,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         iComicAPI = Common.api
 
         Slider.init(PicassoImageLoadingService(this))
+
+        button_search.setOnClickListener { startActivity(Intent(this@MainActivity, CategoryFilter::class.java)) }
 
         recycler_comic.setHasFixedSize(true)
         recycler_comic.layoutManager = GridLayoutManager(this, 2)
