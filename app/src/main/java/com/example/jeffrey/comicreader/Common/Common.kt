@@ -13,12 +13,15 @@ object Common {
 
     var selected_comic: Comic? = null
     var chapter_list : List<Chapter> = ArrayList()
+    var selected_chapter: Chapter? = null
+    var chapter_index: Int = -1
 
     fun isConnectedToInternet(context: Context?): Boolean {
         val cm = context!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if(Build.VERSION.SDK_INT < 23) {
             val ni = cm.activeNetworkInfo
             if(ni != null) {
+                @Suppress("DEPRECATION")
                 return ni.isConnected && (ni.type == ConnectivityManager.TYPE_WIFI || ni.type == ConnectivityManager.TYPE_MOBILE)
             }
         } else {
@@ -29,6 +32,11 @@ object Common {
             }
         }
         return false
+    }
+
+    fun formatString(name: String?): CharSequence? {
+        val finalResult = StringBuilder(if (name!!.length > 15) name.substring(0, 15) + "..." else name)
+        return finalResult.toString()
     }
 
     val api: IComicAPI

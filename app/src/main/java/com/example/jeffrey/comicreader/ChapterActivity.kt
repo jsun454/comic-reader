@@ -13,7 +13,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_chapter.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class ChapterActivity : AppCompatActivity() {
 
